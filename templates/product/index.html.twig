@@ -13,7 +13,7 @@
             <h2 class="card-title nameProduct">{{ product.name }}</h2>
             <h5 class="d-block mb-3"> {{ product.pricewt }}€ </h5>
             <p class="card-text">{{ product.description|raw }}</p>
-            <button class="btn btn-success"> Ajouter au panier</button>
+            <a href="{{ path('app_cart_add', { id : product.id }) }}" class="btn btn-success"> Ajouter au panier</a>
         </div>
         </div>
     </div>

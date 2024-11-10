@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container my-5">
+    <h1> Mon Panier</h1>
+    <div class="row">
+        <div class="col-md-8">
+        {% for product in cart %}
+        <div class="row mt-2">
+            <div class="col-md-2">
+                <img src="/assets/images/{{ product.object.images }}" class="img-fluid" alt="{{ product.object.name}}">
+            </div>
+            <div class="col-md-6">
+                <strong> {{ product.object.name }}</strong>
+                <span class="d-block small">prix unitaire : {{product.object.pricewt}}</span>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path('app_cart_decrease', { id : product.object.id }) }}">-</a>
+                <span class="badge text-bg-secondary">{{product.qty}}</span>
+                <a href="{{ path('app_cart_add', { id : product.object.id }) }}">+</a>
+            </div>
+            <div class="col-md-2">
+                <strong> {{ (product.qty * product.object.pricewt)  }} €</strong>
+            </div>
+        </div>
+        {% endfor %}
+        <a href="{{ path('app_cart_remove') }}" class="btn btn-info w-100 mt-3">vider le panier</a>
+        </div>
+        <div class="col-md-4">
+            <div class="bg-light p-3">
+                <div class="d-flex justify-content-between">
+                    <span class="fw-bol">Total Produit:</span>
+                    <span> {{ fullcartQuantity }} </span>
+                </div>
+            </div>
+            <div class="bg-light p-3">
+                <div class="d-flex justify-content-between">
+                    <span class="fw-bol">Prix Total: </span>
+                    <span> {{ TotalWt }} €</span>
+                </div>
+            </div>
+            <a href="#" class="btn btn-info w-100 mt-3">Commander</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
