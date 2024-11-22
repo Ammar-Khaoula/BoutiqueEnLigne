@@ -138,4 +138,8 @@ class Address
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getFirstName(). ' '. $this->getLastName(). '</br>'. $this->getAddress() . '</br>'. $this->getCity(). ' - ' . $this->getCountry();
+    }
 }
