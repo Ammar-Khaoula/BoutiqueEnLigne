@@ -7,13 +7,23 @@ use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Attribute\Route;
+
+use function PHPSTORM_META\type;
 
 class CartController extends AbstractController
 {
+    //#[Route('/panier/{motif}', name: 'app_cart', defaults: [ 'motif' => null ])]
     #[Route('/panier', name: 'app_cart')]
     public function index(Cart $cart): Response
     {
+        /*if($motif == "annulation"){
+            $this->addFlash(
+                type: 'info',
+                message: 'paiement annulé : vous pouvez mettre à jour votre panier et votre commande.'
+            );
+        }*/
         return $this->render('cart/index.html.twig', [
             'cart' => $cart->getCart(),
             'TotalWt'=> $cart->getTotalWt()
@@ -26,7 +36,6 @@ class CartController extends AbstractController
         $product = $productRepository->findOneById($id);
         
         $cart->add($product);
-
         $this->addFlash(
             type: 'success',
             message: "produit corectement ajouté à votre panier."

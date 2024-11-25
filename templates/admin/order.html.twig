@@ -5,7 +5,9 @@
     {{ include('admin/state.html.twig', { field : {'value' : order.state }} ) }}
     </br>
     </br>
-    <span>passée le : {{ order.createdAt|date('d/m/y') }}</span>
+    <span>passée le : {{ order.createdAt|date('d/m/y') }}</span></br>
+    <span>Stripe Session Id : {{ order.stripeSessionId }}</span></br>
+
 
     <div class="row my-4">
         <div class="col-md-6">
@@ -32,7 +34,7 @@
         <tbody>
             {% for product in order.orderDetails %}
                 <tr>
-                    <td> <img src="assets/images/{{ product.productIllustration }}" width="100px"> </td>
+                    <td> <img src="/assets/images/{{ product.productIllustration }}" width="100px"> </td>
                     <td>{{ product.productName }}</td>
                     <td>{{ product.productQuantity }}</td>
                     <td>{{ product.productPrice }}</td>
