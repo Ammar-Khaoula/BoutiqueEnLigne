@@ -76,6 +76,7 @@ class PaymentController extends AbstractController
     #[Route('/commande/merci/{stripe_session_id}', name: 'app_payment_success')]
     public function success($stripe_session_id, OrderRepository $orderRepository, EntityManagerInterface $entityManager, Cart $cart): Response
     {
+        
         $order = $orderRepository->findOneBy([
             'stripe_session_id' => $stripe_session_id,
             'user' => $this->getUser()
